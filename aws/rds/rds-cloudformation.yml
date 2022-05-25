@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  DatabaseSubnetGroup:
+    Type: 'AWS::RDS::DBSubnetGroup'
+    Properties:
+      DBSubnetGroupDescription: 'Subnet group for database instance'
+      SubnetIds:
+        - subnet-0287aed4abb63c93e
+        - subnet-0d6c94ada7161fc2e
+
+  Database:
+    Type: 'AWS::RDS::DBInstance'
+    Properties:
+      DBInstanceIdentifier: 'min-dev'
+      AllocatedStorage: '10'
+      DBInstanceClass: 'db.t3.micro'
+      Engine: 'mysql'
+      EngineVersion: 8.0.28
+      DBSubnetGroupName: !Ref DatabaseSubnetGroup
+      PubliclyAccessible: true
+      VPCSecurityGroups:
+        - !ImportValue min-dev-rds-security-group-RDSSecurityGroupGroupId
+      MasterUsername: 'minuser'
+      MasterUserPassword: 'minuser'
+    DeletionPolicy: 'Snapshot'

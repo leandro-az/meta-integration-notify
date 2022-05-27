@@ -50,6 +50,12 @@ aws cloudformation create-stack --template-body file://./aws/security-group/rds-
 aws cloudformation create-stack --template-body file://./aws/rds/rds-cloudformation.yml --stack-name min-dev-rds --profile dev
 ```
 
+## SCAFFOLDING DB:
+
+```
+typeorm-model-generator -h <host> -d <database> -p [port] -u <user> -x [password] -e [engine]
+```
+
 ## 🤝 Code Contributor
 
 👤 **Leandro Almeida**

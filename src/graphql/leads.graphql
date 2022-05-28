@@ -1,24 +1,50 @@
 type Lead {
-  # Example field (placeholder)
-  exampleField: Int
+  leadId: String!
+  email: String
+  phone: String
+  name: String
+  age: Int
+  valor_total_plano: Float
+  status: StatusEnum
+  obs: String
+  createdAt: String
+  updatedAt: String
+}
+
+enum StatusEnum {
+  NOVO
+  CANCELADO
+  FECHADO
+  NEGOCIANDO
 }
 
 input CreateLeadInput {
-  # Example field (placeholder)
-  exampleField: Int
+  email: String
+  phone: String
+  name: String
+  age: Int
+  valor_total_plano: Float
+  obs: String
 }
 
 input UpdateLeadInput {
-  id: Int!
+  leadId: String
+  email: String
+  phone: String
+  name: String
+  age: Int
+  valor_total_plano: Float
+  obs: String
 }
 
 type Query {
-  leads: [Lead]!
-  lead(id: Int!): Lead
+  lead(leadId: String!): Lead
+  leadsByEmployee(employeeUserId: String!): [Lead]!
+  leadsByManager(managerUserId: String!): [Lead]!
 }
 
 type Mutation {
   createLead(createLeadInput: CreateLeadInput!): Lead!
   updateLead(updateLeadInput: UpdateLeadInput!): Lead!
-  removeLead(id: Int!): Lead
+  removeLead(leadId: Int!): Lead
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateManagerEmployeeInput } from '../dto/create-manager-employee.input';
-import { UpdateManagerEmployeeInput } from './dto/update-manager-employee.input';
+import { UpdateManagerEmployeeInput } from '../dto/update-manager-employee.input';
 
 @Injectable()
 export class ManagerEmployeeService {

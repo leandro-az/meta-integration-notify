@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUsersIntegrationInput } from '../dto/create-users-integration.input';
-import { UpdateUsersIntegrationInput } from './dto/update-users-integration.input';
+import { UpdateUsersIntegrationInput } from '../dto/update-users-integration.input';
 
 @Injectable()
 export class UsersIntegrationsService {

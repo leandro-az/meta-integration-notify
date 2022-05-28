@@ -29,8 +29,8 @@ export class User {
   @Column('varchar', { name: 'name', nullable: true, length: 255 })
   name: string | null;
 
-  @Column('varchar', { name: 'role_id_fk', nullable: true, length: 38 })
-  roleIdFk: string | null;
+  // @Column('varchar', { name: 'role_id_fk', nullable: true, length: 38 })
+  // roleIdFk: string | null;
 
   @Column('datetime', { name: 'created_at' })
   createdAt: Date;

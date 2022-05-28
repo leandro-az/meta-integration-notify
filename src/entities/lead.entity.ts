@@ -46,12 +46,13 @@ export class Lead {
   @Column('datetime', { name: 'updated_at', nullable: true })
   updatedAt: Date | null;
 
-  @Column('varchar', { name: 'user_id_fk', length: 38 })
-  userIdFk: string;
+  // @Column('varchar', { name: 'user_id_fk', length: 38 })
+  // userIdFk: string;
 
   @ManyToOne(() => User, (users) => users.leads, {
     onDelete: 'NO ACTION',
     onUpdate: 'NO ACTION',
+    eager: false,
   })
   @JoinColumn([{ name: 'user_id_fk', referencedColumnName: 'userId' }])
   userIdFk2: User;

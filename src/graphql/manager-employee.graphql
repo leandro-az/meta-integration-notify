@@ -1,24 +1,24 @@
-type ManagerEmployee {
-  # Example field (placeholder)
-  exampleField: Int
-}
+# type ManagerEmployee {
+#   # Example field (placeholder)
+#   exampleField: Int
+# }
 
-input CreateManagerEmployeeInput {
-  # Example field (placeholder)
-  exampleField: Int
-}
+# input CreateManagerEmployeeInput {
+#   # Example field (placeholder)
+#   exampleField: Int
+# }
 
-input UpdateManagerEmployeeInput {
-  id: Int!
-}
+# input UpdateManagerEmployeeInput {
+#   id: Int!
+# }
 
-type Query {
-  managerEmployee: [ManagerEmployee]!
-  managerEmployee(id: Int!): ManagerEmployee
-}
+# type Query {
+#   managerEmployee: [ManagerEmployee]!
+#   managerEmployee(id: Int!): ManagerEmployee
+# }
 
-type Mutation {
-  createManagerEmployee(createManagerEmployeeInput: CreateManagerEmployeeInput!): ManagerEmployee!
-  updateManagerEmployee(updateManagerEmployeeInput: UpdateManagerEmployeeInput!): ManagerEmployee!
-  removeManagerEmployee(id: Int!): ManagerEmployee
-}
+# type Mutation {
+#   createManagerEmployee(createManagerEmployeeInput: CreateManagerEmployeeInput!): ManagerEmployee!
+#   updateManagerEmployee(updateManagerEmployeeInput: UpdateManagerEmployeeInput!): ManagerEmployee!
+#   removeManagerEmployee(id: Int!): ManagerEmployee
+# }

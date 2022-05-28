@@ -32,8 +32,8 @@ CREATE TABLE `users` (
 
 CREATE TABLE `leads` (
   `lead_id` VARCHAR(38) NOT NULL,
-  `email` VARCHAR(255) UNIQUE,
-  `phone` VARCHAR(255) UNIQUE,
+  `email` VARCHAR(255),
+  `phone` VARCHAR(255),
   `name` VARCHAR(255),
   `age` TINYINT,
   `created_at` DATETIME NOT NULL,

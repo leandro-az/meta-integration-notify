@@ -31,6 +31,15 @@ export class Lead {
   @Column('tinyint', { name: 'age', nullable: true })
   age: number | null;
 
+  @Column('double', { name: 'valor_total_plano', nullable: true })
+  valor_total_plano: number | null;
+
+  @Column('varchar', { name: 'status', nullable: false, length: 30 })
+  status: string;
+
+  @Column('varchar', { name: 'obs', nullable: true, length: 1024 })
+  obs: string | null;
+
   @Column('datetime', { name: 'created_at' })
   createdAt: Date;
 

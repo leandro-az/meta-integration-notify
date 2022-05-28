@@ -39,6 +39,9 @@ CREATE TABLE `leads` (
   `created_at` DATETIME NOT NULL,
   `updated_at` DATETIME,
   `user_id_fk` VARCHAR(38) NOT NULL,
+  `status` VARCHAR (30),
+  `obs` VARCHAR(1024),
+  `valor_total_plano` double DEFAULT NULL,
   PRIMARY KEY (`lead_id`),
   FOREIGN KEY (`user_id_fk`) REFERENCES `users` (`user_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

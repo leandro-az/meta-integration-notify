@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany } from 'typeorm';
-import { Users } from './User';
+import { User } from './user.entity';
 
 @Entity('roles', { schema: 'min_db' })
 export class Role {
@@ -30,6 +30,6 @@ export class Role {
   @Column('datetime', { name: 'updated_at', nullable: true })
   updatedAt: Date | null;
 
-  @OneToMany(() => Users, (users) => users.roleIdFk2)
-  users: Users[];
+  @OneToMany(() => User, (users) => users.roleIdFk2)
+  users: User[];
 }

@@ -1,5 +1,5 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
-import { Users } from './User';
+import { User } from './user.entity';
 
 @Index('email', ['email'], { unique: true })
 @Index('phone', ['phone'], { unique: true })
@@ -49,10 +49,10 @@ export class Lead {
   @Column('varchar', { name: 'user_id_fk', length: 38 })
   userIdFk: string;
 
-  @ManyToOne(() => Users, (users) => users.leads, {
+  @ManyToOne(() => User, (users) => users.leads, {
     onDelete: 'NO ACTION',
     onUpdate: 'NO ACTION',
   })
   @JoinColumn([{ name: 'user_id_fk', referencedColumnName: 'userId' }])
-  userIdFk2: Users;
+  userIdFk2: User;
 }

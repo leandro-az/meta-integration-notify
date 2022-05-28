@@ -6,10 +6,10 @@ import {
   ManyToOne,
   OneToMany,
 } from 'typeorm';
-import { Roles } from './Roles';
-import { Leads } from './Leads';
-import { UsersIntegrations } from './UsersIntegrations';
-import { ManagerEmployee } from './ManagerEmployee';
+import { Role } from './role.entity';
+import { Lead } from './lead.entity';
+import { UsersIntegration } from './users-integration.entity';
+import { ManagerEmployee } from './manager-employee.entity';
 
 @Index('email', ['email'], { unique: true })
 @Index('role_id_fk', ['roleIdFk'], {})
@@ -38,21 +38,21 @@ export class User {
   @Column('datetime', { name: 'updated_at', nullable: true })
   updatedAt: Date | null;
 
-  @ManyToOne(() => Roles, (roles) => roles.users, {
+  @ManyToOne(() => Role, (roles) => roles.users, {
     onDelete: 'SET NULL',
     onUpdate: 'NO ACTION',
   })
   @JoinColumn([{ name: 'role_id_fk', referencedColumnName: 'roleId' }])
-  roleIdFk2: Roles;
+  roleIdFk2: Role;
 
-  @OneToMany(() => Leads, (leads) => leads.userIdFk2)
-  leads: Leads[];
+  @OneToMany(() => Lead, (leads) => leads.userIdFk2)
+  leads: Lead[];
 
   @OneToMany(
-    () => UsersIntegrations,
-    (usersIntegrations) => usersIntegrations.userIdFk2,
+    () => UsersIntegration,
+    (usersIntegration) => usersIntegration.userIdFk2,
   )
-  usersIntegrations: UsersIntegrations[];
+  usersIntegration: UsersIntegration[];
 
   @OneToMany(
     () => ManagerEmployee,

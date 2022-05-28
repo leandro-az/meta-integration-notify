@@ -1,5 +1,5 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
-import { Users } from './User';
+import { User } from './user.entity';
 
 @Index('manager_id_fk', ['managerIdFk'], {})
 @Index('employee_id_fk', ['employeeIdFk'], {})
@@ -20,17 +20,17 @@ export class ManagerEmployee {
   @Column('datetime', { name: 'updated_at', nullable: true })
   updatedAt: Date | null;
 
-  @ManyToOne(() => Users, (users) => users.managerEmployees, {
+  @ManyToOne(() => User, (users) => users.managerEmployees, {
     onDelete: 'CASCADE',
     onUpdate: 'NO ACTION',
   })
   @JoinColumn([{ name: 'manager_id_fk', referencedColumnName: 'userId' }])
-  managerIdFk2: Users;
+  managerIdFk2: User;
 
-  @ManyToOne(() => Users, (users) => users.managerEmployees2, {
+  @ManyToOne(() => User, (users) => users.managerEmployees2, {
     onDelete: 'CASCADE',
     onUpdate: 'NO ACTION',
   })
   @JoinColumn([{ name: 'employee_id_fk', referencedColumnName: 'userId' }])
-  employeeIdFk2: Users;
+  employeeIdFk2: User;
 }

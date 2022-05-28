@@ -1,5 +1,5 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
-import { Users } from './User';
+import { User } from './user.entity';
 
 @Index('integration_url', ['integrationUrl'], { unique: true })
 @Index('integration_token', ['integrationToken'], { unique: true })
@@ -34,10 +34,10 @@ export class UsersIntegration {
   @Column('varchar', { name: 'user_id_fk', length: 38 })
   userIdFk: string;
 
-  @ManyToOne(() => Users, (users) => users.usersIntegrations, {
+  @ManyToOne(() => User, (users) => users.usersIntegration, {
     onDelete: 'CASCADE',
     onUpdate: 'NO ACTION',
   })
   @JoinColumn([{ name: 'user_id_fk', referencedColumnName: 'userId' }])
-  userIdFk2: Users;
+  userIdFk2: User;
 }

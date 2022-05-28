@@ -1,8 +1,8 @@
 import { Column, Entity, OneToMany } from 'typeorm';
-import { Users } from './Users';
+import { Users } from './User';
 
 @Entity('roles', { schema: 'min_db' })
-export class Roles {
+export class Role {
   @Column('varchar', { primary: true, name: 'role_id', length: 38 })
   roleId: string;
 

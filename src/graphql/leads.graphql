@@ -1,0 +1,24 @@
+type Lead {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input CreateLeadInput {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input UpdateLeadInput {
+  id: Int!
+}
+
+type Query {
+  leads: [Lead]!
+  lead(id: Int!): Lead
+}
+
+type Mutation {
+  createLead(createLeadInput: CreateLeadInput!): Lead!
+  updateLead(updateLeadInput: UpdateLeadInput!): Lead!
+  removeLead(id: Int!): Lead
+}

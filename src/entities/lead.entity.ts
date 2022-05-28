@@ -1,11 +1,11 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
-import { Users } from './Users';
+import { Users } from './User';
 
 @Index('email', ['email'], { unique: true })
 @Index('phone', ['phone'], { unique: true })
 @Index('user_id_fk', ['userIdFk'], {})
 @Entity('leads', { schema: 'min_db' })
-export class Leads {
+export class Lead {
   @Column('varchar', { primary: true, name: 'lead_id', length: 38 })
   leadId: string;
 

@@ -1,0 +1,24 @@
+type UsersIntegration {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input CreateUsersIntegrationInput {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input UpdateUsersIntegrationInput {
+  id: Int!
+}
+
+type Query {
+  usersIntegrations: [UsersIntegration]!
+  usersIntegration(id: Int!): UsersIntegration
+}
+
+type Mutation {
+  createUsersIntegration(createUsersIntegrationInput: CreateUsersIntegrationInput!): UsersIntegration!
+  updateUsersIntegration(updateUsersIntegrationInput: UpdateUsersIntegrationInput!): UsersIntegration!
+  removeUsersIntegration(id: Int!): UsersIntegration
+}

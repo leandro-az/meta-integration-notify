@@ -14,7 +14,7 @@ import { ManagerEmployee } from './ManagerEmployee';
 @Index('email', ['email'], { unique: true })
 @Index('role_id_fk', ['roleIdFk'], {})
 @Entity('users', { schema: 'min_db' })
-export class Users {
+export class User {
   @Column('varchar', { primary: true, name: 'user_id', length: 38 })
   userId: string;
 

@@ -25,6 +25,7 @@
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/graphql": "^10.0.12",
+    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^8.0.0",
     "apollo-server-express": "^3.7.0",
     "graphql": "^16.5.0",

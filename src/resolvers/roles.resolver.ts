@@ -7,28 +7,28 @@ import { UpdateRoleInput } from '../dto/update-role.input';
 export class RolesResolver {
   constructor(private readonly rolesService: RolesService) {}
 
-  @Mutation('createRole')
-  create(@Args('createRoleInput') createRoleInput: CreateRoleInput) {
-    return this.rolesService.create(createRoleInput);
-  }
+  // @Mutation('createRole')
+  // create(@Args('createRoleInput') createRoleInput: CreateRoleInput) {
+  //   return this.rolesService.create(createRoleInput);
+  // }
 
-  @Query('roles')
-  findAll() {
-    return this.rolesService.findAll();
-  }
+  // @Query('roles')
+  // findAll() {
+  //   return this.rolesService.findAll();
+  // }
 
-  @Query('role')
-  findOne(@Args('id') id: number) {
-    return this.rolesService.findOne(id);
-  }
+  // @Query('role')
+  // findOne(@Args('id') id: number) {
+  //   return this.rolesService.findOne(id);
+  // }
 
-  @Mutation('updateRole')
-  update(@Args('updateRoleInput') updateRoleInput: UpdateRoleInput) {
-    return this.rolesService.update(updateRoleInput.id, updateRoleInput);
-  }
+  // @Mutation('updateRole')
+  // update(@Args('updateRoleInput') updateRoleInput: UpdateRoleInput) {
+  //   return this.rolesService.update(updateRoleInput.id, updateRoleInput);
+  // }
 
-  @Mutation('removeRole')
-  remove(@Args('id') id: number) {
-    return this.rolesService.remove(id);
-  }
+  // @Mutation('removeRole')
+  // remove(@Args('id') id: number) {
+  //   return this.rolesService.remove(id);
+  // }
 }

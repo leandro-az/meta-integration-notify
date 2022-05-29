@@ -9,37 +9,37 @@ export class ManagerEmployeeResolver {
     private readonly managerEmployeeService: ManagerEmployeeService,
   ) {}
 
-  @Mutation('createManagerEmployee')
-  create(
-    @Args('createManagerEmployeeInput')
-    createManagerEmployeeInput: CreateManagerEmployeeInput,
-  ) {
-    return this.managerEmployeeService.create(createManagerEmployeeInput);
-  }
+  // @Mutation('createManagerEmployee')
+  // create(
+  //   @Args('createManagerEmployeeInput')
+  //   createManagerEmployeeInput: CreateManagerEmployeeInput,
+  // ) {
+  //   return this.managerEmployeeService.create(createManagerEmployeeInput);
+  // }
 
-  @Query('managerEmployee')
-  findAll() {
-    return this.managerEmployeeService.findAll();
-  }
+  // @Query('managerEmployee')
+  // findAll() {
+  //   return this.managerEmployeeService.findAll();
+  // }
 
-  @Query('managerEmployee')
-  findOne(@Args('id') id: number) {
-    return this.managerEmployeeService.findOne(id);
-  }
+  // @Query('managerEmployee')
+  // findOne(@Args('id') id: number) {
+  //   return this.managerEmployeeService.findOne(id);
+  // }
 
-  @Mutation('updateManagerEmployee')
-  update(
-    @Args('updateManagerEmployeeInput')
-    updateManagerEmployeeInput: UpdateManagerEmployeeInput,
-  ) {
-    return this.managerEmployeeService.update(
-      updateManagerEmployeeInput.id,
-      updateManagerEmployeeInput,
-    );
-  }
+  // @Mutation('updateManagerEmployee')
+  // update(
+  //   @Args('updateManagerEmployeeInput')
+  //   updateManagerEmployeeInput: UpdateManagerEmployeeInput,
+  // ) {
+  //   return this.managerEmployeeService.update(
+  //     updateManagerEmployeeInput.id,
+  //     updateManagerEmployeeInput,
+  //   );
+  // }
 
-  @Mutation('removeManagerEmployee')
-  remove(@Args('id') id: number) {
-    return this.managerEmployeeService.remove(id);
-  }
+  // @Mutation('removeManagerEmployee')
+  // remove(@Args('id') id: number) {
+  //   return this.managerEmployeeService.remove(id);
+  // }
 }

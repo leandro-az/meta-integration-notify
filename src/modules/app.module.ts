@@ -6,19 +6,16 @@ import { LeadsModule } from './leads.module';
 import { RolesModule } from './roles.module';
 import { UsersIntegrationsModule } from './users-integrations.module';
 import { ManagerEmployeeModule } from './manager-employee.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { GraphqlGeneratorModule } from './gql-generator.module';
-import { databaseProviders } from '../configurations/data-source.config';
+import { GqlModule } from './graphql.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(databaseProviders),
     UsersModule,
     LeadsModule,
     RolesModule,
     UsersIntegrationsModule,
     ManagerEmployeeModule,
-    GraphqlGeneratorModule,
+    GqlModule,
   ],
   controllers: [AppController],
   providers: [AppService],

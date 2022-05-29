@@ -1,14 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { CreateLeadInput } from '../dto/create-lead.input';
 import { UpdateLeadInput } from '../dto/update-lead.input';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Lead } from '../entities/lead.entity';
 
 @Injectable()
 export class LeadsService {
   constructor(
-    @InjectRepository(Lead)
+    @Inject('LEAD_REPOSITORY')
     private leadRepository: Repository<Lead>,
   ) {}
 

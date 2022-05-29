@@ -19,13 +19,3 @@ input UpdateUserInput {
   phone: String
   name: String
 }
-
-type Query {
-  usersByManager(userManagerId: String!): User
-}
-
-type Mutation {
-  createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(userId: Int!): User
-}

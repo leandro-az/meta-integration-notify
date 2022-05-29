@@ -12,11 +12,6 @@ export class LeadsResolver {
     return this.leadsService.create(createLeadInput);
   }
 
-  @Query('leads')
-  findAll() {
-    return this.leadsService.findAll();
-  }
-
   @Query('lead')
   findOne(@Args('id') id: number) {
     return this.leadsService.findOne(id);

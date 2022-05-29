@@ -1,6 +1,6 @@
 type Role {
-  roleId: String
-  roleName: String
+  roleId: String!
+  roleName: String!
   canAddEmployee: Boolean
   canCreateLead: Boolean
   canEditLead: Boolean

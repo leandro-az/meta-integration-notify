@@ -1,0 +1,16 @@
+type Query {
+  usersByEmail(email: String!): User
+  usersByManager(userManagerId: String!): User
+  lead(leadId: String!): Lead
+  leadsByEmployee(employeeUserId: String!): [Lead]!
+  leadsByManager(managerUserId: String!): [Lead]!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(userId: Int!): User
+  createLead(createLeadInput: CreateLeadInput!): Lead!
+  updateLead(updateLeadInput: UpdateLeadInput!): Lead!
+  removeLead(leadId: Int!): Lead
+}

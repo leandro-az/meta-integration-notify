@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { LeadsService } from '../services/leads.service';
 import { LeadsResolver } from '../resolvers/leads.resolver';
-import { Lead } from '../entities/lead.entity';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { DatabaseModule } from './database.module';
+import { leadProvider } from '../providers/lead.provider';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Lead])],
-  providers: [LeadsResolver, LeadsService],
+  imports: [DatabaseModule],
+  providers: [...leadProvider, LeadsResolver, LeadsService],
 })
 export class LeadsModule {}

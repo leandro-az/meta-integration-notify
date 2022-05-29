@@ -36,15 +36,3 @@ input UpdateLeadInput {
   valor_total_plano: Float
   obs: String
 }
-
-type Query {
-  lead(leadId: String!): Lead
-  leadsByEmployee(employeeUserId: String!): [Lead]!
-  leadsByManager(managerUserId: String!): [Lead]!
-}
-
-type Mutation {
-  createLead(createLeadInput: CreateLeadInput!): Lead!
-  updateLead(updateLeadInput: UpdateLeadInput!): Lead!
-  removeLead(leadId: Int!): Lead
-}

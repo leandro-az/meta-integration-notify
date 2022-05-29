@@ -12,14 +12,9 @@ export class UsersResolver {
     return this.usersService.create(createUserInput);
   }
 
-  @Query('users')
-  findAll() {
-    return this.usersService.findAll();
-  }
-
-  @Query('user')
-  findOne(@Args('id') id: number) {
-    return this.usersService.findOne(id);
+  @Query('usersByEmail')
+  findOne(@Args('email') email: string) {
+    return this.usersService.findByEmail(email);
   }
 
   @Mutation('updateUser')

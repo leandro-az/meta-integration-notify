@@ -13,7 +13,7 @@ export const databaseProviders = [
         password: process.env.MYSQL_PASS,
         database: process.env.MYSQL_DATABASE,
         synchronize: false,
-        entities: ['../entities/*.ts'],
+        entities: [__dirname + '/../entities/*.{js,ts}'],
       });
 
       return dataSource.initialize();

@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from '../controllers/app.controller';
-import { AppService } from '../services/app.service';
 import { UsersModule } from './users.module';
 import { LeadsModule } from './leads.module';
 import { RolesModule } from './roles.module';
@@ -17,7 +15,6 @@ import { GqlModule } from './graphql.module';
     ManagerEmployeeModule,
     GqlModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}

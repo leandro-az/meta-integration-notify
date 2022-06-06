@@ -1,5 +1,5 @@
 type Role {
-  roleId: String!
+  roleId: Int!
   roleName: String!
   canAddEmployee: Boolean
   canCreateLead: Boolean

@@ -7,23 +7,33 @@ import { UpdateUserInput } from '../dto/update-user.input';
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
-  @Mutation('createUser')
+  @Mutation('createUserManager')
   create(@Args('createUserInput') createUserInput: CreateUserInput) {
-    return this.usersService.create(createUserInput);
+    return this.usersService.createUserManager(createUserInput);
   }
 
-  @Query('usersByEmail')
+  @Query('userByEmail')
   findOne(@Args('email') email: string) {
     return this.usersService.findByEmail(email);
   }
 
+  // @Query('employeesByManager')
+  // findEmployees(@Args('managerUserId') userId: string) {
+  //   return this.usersService.findEmployees(userId);
+  // }
+
+  // @Query('managerByEmployee')
+  // findManager(@Args('employeeUserId') userId: string) {
+  //   return this.usersService.findManager(userId);
+  // }
+
   @Mutation('updateUser')
   update(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
-    return this.usersService.update(updateUserInput.id, updateUserInput);
+    return this.usersService.update(updateUserInput.userId, updateUserInput);
   }
 
   @Mutation('removeUser')
-  remove(@Args('id') id: number) {
-    return this.usersService.remove(id);
+  remove(@Args('userId') userId: string) {
+    return this.usersService.remove(userId);
   }
 }

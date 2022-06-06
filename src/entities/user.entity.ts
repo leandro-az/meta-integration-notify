@@ -29,8 +29,8 @@ export class User {
   @Column('varchar', { name: 'name', nullable: true, length: 255 })
   name: string | null;
 
-  // @Column('varchar', { name: 'role_id_fk', nullable: true, length: 38 })
-  // roleIdFk: string | null;
+  @Column('tinyint', { name: 'role_id_fk', nullable: true })
+  roleIdFk: number | null;
 
   @Column('datetime', { name: 'created_at' })
   createdAt: Date;
@@ -43,28 +43,28 @@ export class User {
     onUpdate: 'NO ACTION',
   })
   @JoinColumn([{ name: 'role_id_fk', referencedColumnName: 'roleId' }])
-  roleIdFk2: Role;
+  roleIdFk2?: Role;
 
   @OneToMany(() => Lead, (leads) => leads.userIdFk2)
-  leads: Lead[];
+  leads?: Lead[];
 
   @OneToMany(
     () => UsersIntegration,
     (usersIntegration) => usersIntegration.userIdFk2,
   )
-  usersIntegration: UsersIntegration[];
+  usersIntegration?: UsersIntegration[];
 
   @OneToMany(
     () => ManagerEmployee,
-    (managerEmployee) => managerEmployee.managerIdFk2,
+    (managerEmployee) => managerEmployee.managerUser,
     { eager: false },
   )
-  managerEmployees: ManagerEmployee[];
+  employeesByManager?: ManagerEmployee[];
 
   @OneToMany(
     () => ManagerEmployee,
-    (managerEmployee) => managerEmployee.employeeIdFk2,
+    (managerEmployee) => managerEmployee.employeeUser,
     { eager: false },
   )
-  managerEmployees2: ManagerEmployee[];
+  managerByEmployees?: ManagerEmployee[];
 }

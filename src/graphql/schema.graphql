@@ -1,13 +1,17 @@
 type Query {
-  usersByEmail(email: String!): User
-  usersByManager(userManagerId: String!): User
+  userByEmail(email: String!): User
   lead(leadId: String!): Lead
-  leadsByEmployee(employeeUserId: String!): [Lead]!
-  leadsByManager(managerUserId: String!): [Lead]!
+  leadsByUser(userId: String!): [Lead]!
+  employeesByManager(managerUserId: String!): [User]!
+  managerByEmployee(employeeUserId: String!): User!
 }
 
 type Mutation {
-  createUser(createUserInput: CreateUserInput!): User!
+  createUserManager(createUserInput: CreateUserInput!): User!
+  createUserEmployee(
+    managerUserId: String!
+    employeeUserInput: CreateUserInput!
+  ): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(userId: Int!): User
   createLead(createLeadInput: CreateLeadInput!): Lead!

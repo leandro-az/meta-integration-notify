@@ -1,7 +1,10 @@
-# type UsersIntegration {
-#   # Example field (placeholder)
-#   exampleField: Int
-# }
+type UsersIntegration {
+  userIntegrationId: String
+  integrationUrl: String
+  integrationToken: String
+  createdAt: String
+  updatedAt: String
+}
 
 # input CreateUsersIntegrationInput {
 #   # Example field (placeholder)

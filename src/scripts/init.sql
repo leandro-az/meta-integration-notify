@@ -3,7 +3,7 @@ CREATE DATABASE min_db
 use min_db
 
 CREATE TABLE `roles` (
-  `role_id` VARCHAR(38) NOT NULL,
+  `role_id` TINYINT,
   `role_name` VARCHAR(255),
   `can_add_employee` TINYINT(1),
   `can_create_lead` TINYINT(1),
@@ -16,14 +16,14 @@ CREATE TABLE `roles` (
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `roles` (`role_id`,`role_name`,`can_add_employee`,`can_create_lead`,`can_edit_lead`,`can_vinculate_lead`,`can_delete_lead`,`created_at`) VALUES (uuid(),'manager',1,1,1,1,1,NOW());
-INSERT INTO `roles` (`role_id`,`role_name`,`can_add_employee`,`can_create_lead`,`can_edit_lead`,`can_vinculate_lead`,`can_delete_lead`,`created_at`) VALUES (uuid(),'employee',0,1,1,0,0,NOW());
+INSERT INTO `roles` (`role_id`,`role_name`,`can_add_employee`,`can_create_lead`,`can_edit_lead`,`can_vinculate_lead`,`can_delete_lead`,`created_at`) VALUES (1,'manager',1,1,1,1,1,NOW());
+INSERT INTO `roles` (`role_id`,`role_name`,`can_add_employee`,`can_create_lead`,`can_edit_lead`,`can_vinculate_lead`,`can_delete_lead`,`created_at`) VALUES (2,'employee',0,1,1,0,0,NOW());
 
 CREATE TABLE `users` (
   `user_id` VARCHAR(38) NOT NULL,
   `email` VARCHAR(255) UNIQUE,
   `name` VARCHAR(255),
-  `role_id_fk` VARCHAR(38),
+  `role_id_fk` TINYINT,
   `created_at` DATETIME NOT NULL,
   `updated_at` DATETIME,
   PRIMARY KEY (`user_id`),

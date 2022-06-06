@@ -17,15 +17,15 @@ export class ManagerEmployeeResolver {
   //   return this.managerEmployeeService.create(createManagerEmployeeInput);
   // }
 
-  // @Query('managerEmployee')
-  // findAll() {
-  //   return this.managerEmployeeService.findAll();
-  // }
+  @Query('managerByEmployee')
+  findAll(@Args('employeeUserId') employeeUserId: string) {
+    return this.managerEmployeeService.findManagerByEmployee(employeeUserId);
+  }
 
-  // @Query('managerEmployee')
-  // findOne(@Args('id') id: number) {
-  //   return this.managerEmployeeService.findOne(id);
-  // }
+  @Query('employeesByManager')
+  findOne(@Args('managerUserId') managerUserId: string) {
+    return this.managerEmployeeService.findAllEmployeesByManager(managerUserId);
+  }
 
   // @Mutation('updateManagerEmployee')
   // update(

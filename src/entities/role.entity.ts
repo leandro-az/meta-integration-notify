@@ -3,8 +3,8 @@ import { User } from './user.entity';
 
 @Entity('roles', { schema: 'min_db' })
 export class Role {
-  @Column('varchar', { primary: true, name: 'role_id', length: 38 })
-  roleId: string;
+  @Column('tinyint', { primary: true, name: 'role_id' })
+  roleId: number;
 
   @Column('varchar', { name: 'role_name', nullable: true, length: 255 })
   roleName: string | null;

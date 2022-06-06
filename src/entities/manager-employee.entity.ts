@@ -18,19 +18,19 @@ export class ManagerEmployee {
   createdAt: Date;
 
   @Column('datetime', { name: 'updated_at', nullable: true })
-  updatedAt: Date | null;
+  updatedAt?: Date | null;
 
-  @ManyToOne(() => User, (users) => users.managerEmployees, {
+  @ManyToOne(() => User, (users) => users.employeesByManager, {
     onDelete: 'CASCADE',
     onUpdate: 'NO ACTION',
   })
   @JoinColumn([{ name: 'manager_id_fk', referencedColumnName: 'userId' }])
-  managerIdFk2: User;
+  managerUser?: User;
 
-  @ManyToOne(() => User, (users) => users.managerEmployees2, {
+  @ManyToOne(() => User, (users) => users.managerByEmployees, {
     onDelete: 'CASCADE',
     onUpdate: 'NO ACTION',
   })
   @JoinColumn([{ name: 'employee_id_fk', referencedColumnName: 'userId' }])
-  employeeIdFk2: User;
+  employeeUser?: User;
 }

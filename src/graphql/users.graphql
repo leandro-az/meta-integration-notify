@@ -5,6 +5,7 @@ type User {
   createdAt: String
   updatedAt: String
   role: Role!
+  userIntergration: UsersIntegration!
 }
 
 input CreateUserInput {

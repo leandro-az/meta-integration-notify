@@ -8,10 +8,7 @@ type Query {
 
 type Mutation {
   createUserManager(createUserInput: CreateUserInput!): User!
-  createUserEmployee(
-    managerUserId: String!
-    employeeUserInput: CreateUserInput!
-  ): User!
+  createUserEmployee(createUserEmployeeInput: CreateUserEmployeeInput): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(userId: Int!): User
   createLead(createLeadInput: CreateLeadInput!): Lead!

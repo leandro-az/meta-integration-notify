@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { CreateManagerEmployeeInput } from '../dto/create-manager-employee.input';
-import { UpdateManagerEmployeeInput } from '../dto/update-manager-employee.input';
+import { CreateUserEmployeeInput } from '../dto/create-user-employee.input';
+import { UpdateManagerEmployeeInput } from '../dto/update-user-employee.input';
 import { Repository } from 'typeorm';
 import { ManagerEmployee } from '../entities/manager-employee.entity';
 
@@ -28,9 +28,9 @@ export class ManagerEmployeeService {
       relations: ['managerUser'],
     });
   }
-  create(createManagerEmployeeInput: CreateManagerEmployeeInput) {
-    return 'This action adds a new managerEmployee';
-  }
+  // create(createManagerEmployeeInput: CreateUserEmployeeInput) {
+  //   return 'This action adds a new managerEmployee';
+  // }
 
   findAll() {
     return `This action returns all managerEmployee`;

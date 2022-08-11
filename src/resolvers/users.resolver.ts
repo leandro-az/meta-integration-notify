@@ -2,6 +2,7 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UsersService } from '../services/users.service';
 import { CreateUserInput } from '../dto/create-user.input';
 import { UpdateUserInput } from '../dto/update-user.input';
+import { CreateUserEmployeeInput } from '../dto/create-user-employee.input';
 
 @Resolver('User')
 export class UsersResolver {
@@ -17,15 +18,23 @@ export class UsersResolver {
     return this.usersService.findByEmail(email);
   }
 
-  // @Query('employeesByManager')
-  // findEmployees(@Args('managerUserId') userId: string) {
-  //   return this.usersService.findEmployees(userId);
-  // }
+  @Mutation('createUserEmployee')
+  createUserEmployee(
+    @Args('createUserEmployeeInput')
+    createUserEmployeeInput: CreateUserEmployeeInput,
+  ) {
+    return this.usersService.createUserEmployee(createUserEmployeeInput);
+  }
 
-  // @Query('managerByEmployee')
-  // findManager(@Args('employeeUserId') userId: string) {
-  //   return this.usersService.findManager(userId);
-  // }
+  @Query('managerByEmployee')
+  findManagerByEmployee(@Args('employeeUserId') employeeUserId: string) {
+    return this.usersService.findManagerByEmployee(employeeUserId);
+  }
+
+  @Query('employeesByManager')
+  findAllEmployeesByManager(@Args('managerUserId') managerUserId: string) {
+    return this.usersService.findAllEmployeesByManager(managerUserId);
+  }
 
   @Mutation('updateUser')
   update(@Args('updateUserInput') updateUserInput: UpdateUserInput) {

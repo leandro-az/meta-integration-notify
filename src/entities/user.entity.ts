@@ -26,6 +26,14 @@ export class User {
   })
   email: string | null;
 
+  @Column('varchar', {
+    name: 'phone',
+    nullable: true,
+    unique: true,
+    length: 255,
+  })
+  phone: string | null;
+
   @Column('varchar', { name: 'name', nullable: true, length: 255 })
   name: string | null;
 

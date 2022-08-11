@@ -1,5 +1,5 @@
 export class CreateUserInput {
   email: string;
-  phone: string;
+  phone?: string;
   name: string;
 }

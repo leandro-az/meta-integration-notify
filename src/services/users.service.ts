@@ -1,11 +1,12 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { CreateUserInput } from '../dto/create-user.input';
 import { UpdateUserInput } from '../dto/update-user.input';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { ManagerEmployee } from '../entities/manager-employee.entity';
-import { uuid } from 'uuidv4';
+import { v4 } from 'uuid';
 import { Roles } from '../constants/roles.constant';
+import { CreateUserEmployeeInput } from '../dto/create-user-employee.input';
 @Injectable()
 export class UsersService {
   constructor(
@@ -16,48 +17,54 @@ export class UsersService {
   ) {}
 
   createUserManager(createUserInput: CreateUserInput) {
-    return this.userRepository.save(createUserInput);
+    const userManager: User = {
+      userId: v4(),
+      createdAt: new Date(),
+      email: createUserInput.email,
+      name: createUserInput.name,
+      phone: createUserInput.phone,
+      roleIdFk: Roles.MANAGER,
+      updatedAt: null,
+    };
+    return this.userRepository.save(userManager);
   }
 
-  async createUserEmployee(
-    managerUserId: string,
-    employeeUserInput: CreateUserInput,
-  ) {
-    const queryRunner = this.userRepository.queryRunner;
-    try {
-      await queryRunner.startTransaction();
-      const manager = await this.userRepository.findOne({
-        where: { userId: managerUserId },
-      });
-      if (!manager) {
-        throw Error('Manager not found');
-      }
+  async createUserEmployee(createUserEmployeeInput: CreateUserEmployeeInput) {
+    const manager = await this.userRepository.findOne({
+      where: { userId: createUserEmployeeInput.managerUserId },
+    });
 
-      const employee: User = {
-        userId: uuid(),
-        name: employeeUserInput.name,
-        email: employeeUserInput.email,
-        createdAt: new Date(),
-        updatedAt: null,
-        roleIdFk: Roles.EMPLOYEE,
-      };
+    if (!manager) {
+      throw Error('Manager not found');
+    }
+
+    const employee: User = {
+      userId: v4(),
+      name: createUserEmployeeInput.employeeUserInput.name,
+      email: createUserEmployeeInput.employeeUserInput.email,
+      createdAt: new Date(),
+      updatedAt: null,
+      roleIdFk: Roles.EMPLOYEE,
+      phone: createUserEmployeeInput.employeeUserInput.phone,
+      managerByEmployees: [],
+    };
+
+    const managerEmployee: ManagerEmployee = {
+      managerEmployeeId: v4(),
+      createdAt: new Date(),
+      employeeIdFk: employee.userId,
+      managerIdFk: createUserEmployeeInput.managerUserId,
+    };
+
+    await this.userRepository.manager.transaction(async () => {
       await this.userRepository.save(employee);
 
-      const managerEmployee: ManagerEmployee = {
-        managerEmployeeId: uuid(),
-        createdAt: new Date(),
-        employeeIdFk: employee.userId,
-        managerIdFk: managerUserId,
-      };
-
       await this.managerEmployeeRepository.save(managerEmployee);
-      await queryRunner.commitTransaction();
-    } catch (err) {
-      await queryRunner.rollbackTransaction();
-      throw err;
-    } finally {
-      await queryRunner.release();
-    }
+    });
+
+    employee.managerByEmployees.push(managerEmployee);
+
+    return employee;
   }
 
   findAllLeadsByUser(userId: string) {
@@ -65,6 +72,36 @@ export class UsersService {
       where: { userId },
       relations: ['leads'],
     });
+  }
+
+  async findAllEmployeesByManager(managerUserId: string) {
+    const result = await this.managerEmployeeRepository.find({
+      where: {
+        managerIdFk: managerUserId,
+      },
+    });
+    if (!result || !result.length) throw Error('Leads not found');
+    const arrayIds = [];
+    result.forEach((ele) => {
+      arrayIds.push(ele.employeeIdFk);
+    });
+    const query = {
+      where: {
+        userId: In(arrayIds),
+      },
+    };
+    return this.userRepository.find(query);
+  }
+
+  async findManagerByEmployee(employeeUserId: string) {
+    const found = await this.managerEmployeeRepository.findOne({
+      where: {
+        employeeIdFk: employeeUserId,
+      },
+    });
+    if (!found) throw Error('Manager not found');
+    const query = { where: { userId: found.managerIdFk } };
+    return this.userRepository.findOne(query);
   }
 
   findOne(userId: string) {

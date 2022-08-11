@@ -23,6 +23,7 @@ CREATE TABLE `users` (
   `user_id` VARCHAR(38) NOT NULL,
   `email` VARCHAR(255) UNIQUE,
   `name` VARCHAR(255),
+  `phone` VARCHAR(255),
   `role_id_fk` TINYINT,
   `created_at` DATETIME NOT NULL,
   `updated_at` DATETIME,

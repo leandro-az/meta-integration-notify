@@ -10,7 +10,7 @@ type User {
 
 input CreateUserInput {
   email: String!
-  phone: String!
+  phone: String
   name: String!
 }
 
@@ -19,4 +19,9 @@ input UpdateUserInput {
   email: String
   phone: String
   name: String
+}
+
+input CreateUserEmployeeInput {
+  managerUserId: String!
+  employeeUserInput: CreateUserInput!
 }

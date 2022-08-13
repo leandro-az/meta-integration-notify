@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './modules/app.module';
-// import 'dotenv/config';
+import 'dotenv/config';
 
 async function bootstrap() {
   const port = process.env.PORT || 3000;

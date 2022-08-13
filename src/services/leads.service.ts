@@ -5,11 +5,14 @@ import { Repository } from 'typeorm';
 import { Lead } from '../entities/lead.entity';
 import { v4 } from 'uuid';
 import { LeadStatus } from '../constants/lead-status.constant';
+import { UsersIntegration } from '../entities/users-integration.entity';
 @Injectable()
 export class LeadsService {
   constructor(
     @Inject('LEAD_REPOSITORY')
     private leadRepository: Repository<Lead>,
+    @Inject('USER_INTEGRATION_REPOSITORY')
+    private userIntegrationRepository: Repository<UsersIntegration>,
   ) {}
 
   create(createLeadInput: CreateLeadInput, userRelated: string) {
@@ -24,6 +27,30 @@ export class LeadsService {
       status: LeadStatus.NOVO,
       valor_total_plano: 0,
       userIdFk: userRelated,
+      updatedAt: null,
+    };
+    return this.leadRepository.save(leadToSave);
+  }
+
+  async recive(createLeadInput: CreateLeadInput, userIntegrationId: string) {
+    const userIntegrationIdFound = await this.userIntegrationRepository.findOne(
+      {
+        where: { userIntegrationId },
+      },
+    );
+    // Talvez tenha que bater no Facebook Para recuperar os dados do Form
+    if (!userIntegrationIdFound) throw new Error('Integration not found!');
+    const leadToSave: Lead = {
+      age: createLeadInput.age,
+      createdAt: new Date(),
+      email: createLeadInput.email,
+      leadId: v4(),
+      name: createLeadInput.name,
+      phone: createLeadInput.phone,
+      obs: createLeadInput.obs,
+      status: LeadStatus.NOVO,
+      valor_total_plano: 0,
+      userIdFk: userIntegrationIdFound.userIdFk,
       updatedAt: null,
     };
     return this.leadRepository.save(leadToSave);

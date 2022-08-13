@@ -9,18 +9,21 @@ export class UsersIntegrationsResolver {
     private readonly usersIntegrationsService: UsersIntegrationsService,
   ) {}
 
-  // @Mutation('createUsersIntegration')
-  // create(
-  //   @Args('createUsersIntegrationInput')
-  //   createUsersIntegrationInput: CreateUsersIntegrationInput,
-  // ) {
-  //   return this.usersIntegrationsService.create(createUsersIntegrationInput);
-  // }
+  @Mutation('createUserIntegration')
+  create(
+    @Args('managerUserId')
+    managerUserId: string,
+  ) {
+    return this.usersIntegrationsService.create(managerUserId);
+  }
 
-  // @Query('usersIntegrations')
-  // findAll() {
-  //   return this.usersIntegrationsService.findAll();
-  // }
+  @Query('usersIntegration')
+  findOne(
+    @Args('managerUserId')
+    managerUserId: string,
+  ) {
+    return this.usersIntegrationsService.findOne(managerUserId);
+  }
 
   // @Query('usersIntegration')
   // findOne(@Args('id') id: number) {

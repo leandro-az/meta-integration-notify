@@ -39,5 +39,5 @@ export class UsersIntegration {
     onUpdate: 'NO ACTION',
   })
   @JoinColumn([{ name: 'user_id_fk', referencedColumnName: 'userId' }])
-  userIdFk2: User;
+  userIdFk2?: User;
 }

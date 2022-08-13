@@ -1,11 +1,12 @@
 name: Deploy to Heroku
+
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
-  lint_test:
+  tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:

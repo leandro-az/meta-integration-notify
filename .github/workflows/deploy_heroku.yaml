@@ -1,9 +1,11 @@
 name: Deploy to Heroku
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      desc:
+        description: "Description of action"
+        required: true
 
 jobs:
   lint_and_test:

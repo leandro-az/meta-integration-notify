@@ -30,6 +30,7 @@
     "@nestjs/graphql": "^10.0.12",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/terminus": "^8.1.1",
     "@nestjs/typeorm": "^9.0.0-next.2",
     "apollo-server-express": "^3.7.0",
     "dotenv": "^16.0.1",

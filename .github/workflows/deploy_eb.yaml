@@ -2,7 +2,7 @@ name: Deploy to Eb
 on:
   push:
     branches:
-    - master
+    - main
 
 jobs:
   build:
@@ -21,7 +21,7 @@ jobs:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: meta-integration-notify
-        environment_name: MyApplication-Environment
+        environment_name: meta-integration-notify-env
         version_label: 1.0
         region: ${{ secrets.AWS_DEFAULT_REGION }}
         deployment_package: deploy.zip

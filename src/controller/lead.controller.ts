@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Query } from '@nestjs/common';
+import { Controller, Post, Body, Query, Get } from '@nestjs/common';
 import { LeadsService } from '../services/leads.service';
 import { CreateLeadInput } from '../dto/create-lead.input';
 
@@ -11,6 +11,10 @@ export class LeadController {
     @Query('userRelated') userRelated: string,
   ): boolean {
     this.leadsService.create(createLeadInput, userRelated);
+    return true;
+  }
+  @Get()
+  healthCheck() {
     return true;
   }
 }

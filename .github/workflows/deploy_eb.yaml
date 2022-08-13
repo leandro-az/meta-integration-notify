@@ -1,4 +1,4 @@
-name: Deploy to Eb
+name: Deploy to Ebt
 on:
   push:
     branches:

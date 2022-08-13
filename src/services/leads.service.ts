@@ -3,7 +3,8 @@ import { CreateLeadInput } from '../dto/create-lead.input';
 import { UpdateLeadInput } from '../dto/update-lead.input';
 import { Repository } from 'typeorm';
 import { Lead } from '../entities/lead.entity';
-
+import { v4 } from 'uuid';
+import { LeadStatus } from '../constants/lead-status.constant';
 @Injectable()
 export class LeadsService {
   constructor(
@@ -11,23 +12,54 @@ export class LeadsService {
     private leadRepository: Repository<Lead>,
   ) {}
 
-  create(createLeadInput: CreateLeadInput) {
-    return 'This action adds a new lead';
+  create(createLeadInput: CreateLeadInput, userRelated: string) {
+    const leadToSave: Lead = {
+      age: createLeadInput.age,
+      createdAt: new Date(),
+      email: createLeadInput.email,
+      leadId: v4(),
+      name: createLeadInput.name,
+      phone: createLeadInput.phone,
+      obs: createLeadInput.obs,
+      status: LeadStatus.NOVO,
+      valor_total_plano: 0,
+      userIdFk: userRelated,
+      updatedAt: null,
+    };
+    return this.leadRepository.save(leadToSave);
   }
 
   findAll() {
     return `This action returns all leads`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} lead`;
+  async findOne(leadId: string) {
+    return this.leadRepository.findOne({ where: { leadId } });
   }
 
-  update(id: number, updateLeadInput: UpdateLeadInput) {
-    return `This action updates a #${id} lead`;
+  async findLeadsByUser(userId: string) {
+    return this.leadRepository.find({
+      where: {
+        userIdFk: userId,
+      },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} lead`;
+  async update(status: string, updateLeadInput: UpdateLeadInput) {
+    const leadToUpdate: Lead = await this.findOne(updateLeadInput.leadId);
+    leadToUpdate.age = updateLeadInput.age;
+    leadToUpdate.email = updateLeadInput.email;
+    leadToUpdate.name = updateLeadInput.name;
+    leadToUpdate.obs = updateLeadInput.obs;
+    leadToUpdate.phone = updateLeadInput.phone;
+    leadToUpdate.status = LeadStatus[status];
+    leadToUpdate.valor_total_plano = updateLeadInput.valor_total_plano;
+    leadToUpdate.updatedAt = new Date();
+    return this.leadRepository.save(leadToUpdate);
+  }
+
+  remove(leadId: string) {
+    this.leadRepository.delete(leadId);
+    return true;
   }
 }

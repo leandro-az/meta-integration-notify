@@ -2,7 +2,6 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UsersService } from '../services/users.service';
 import { CreateUserInput } from '../dto/create-user.input';
 import { UpdateUserInput } from '../dto/update-user.input';
-import { CreateUserEmployeeInput } from '../dto/create-user-employee.input';
 
 @Resolver('User')
 export class UsersResolver {
@@ -20,10 +19,12 @@ export class UsersResolver {
 
   @Mutation('createUserEmployee')
   createUserEmployee(
-    @Args('createUserEmployeeInput')
-    createUserEmployeeInput: CreateUserEmployeeInput,
+    @Args('managerUserId')
+    managerUserId: string,
+    @Args('createUserInput')
+    createUserInput: CreateUserInput,
   ) {
-    return this.usersService.createUserEmployee(createUserEmployeeInput);
+    return this.usersService.createUserEmployee(managerUserId, createUserInput);
   }
 
   @Query('managerByEmployee')

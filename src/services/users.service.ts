@@ -6,7 +6,6 @@ import { User } from '../entities/user.entity';
 import { ManagerEmployee } from '../entities/manager-employee.entity';
 import { v4 } from 'uuid';
 import { Roles } from '../constants/roles.constant';
-import { CreateUserEmployeeInput } from '../dto/create-user-employee.input';
 @Injectable()
 export class UsersService {
   constructor(
@@ -29,9 +28,12 @@ export class UsersService {
     return this.userRepository.save(userManager);
   }
 
-  async createUserEmployee(createUserEmployeeInput: CreateUserEmployeeInput) {
+  async createUserEmployee(
+    managerUserId: string,
+    createUserInput: CreateUserInput,
+  ) {
     const manager = await this.userRepository.findOne({
-      where: { userId: createUserEmployeeInput.managerUserId },
+      where: { userId: managerUserId },
     });
 
     if (!manager) {
@@ -40,12 +42,12 @@ export class UsersService {
 
     const employee: User = {
       userId: v4(),
-      name: createUserEmployeeInput.employeeUserInput.name,
-      email: createUserEmployeeInput.employeeUserInput.email,
+      name: createUserInput.name,
+      email: createUserInput.email,
       createdAt: new Date(),
       updatedAt: null,
       roleIdFk: Roles.EMPLOYEE,
-      phone: createUserEmployeeInput.employeeUserInput.phone,
+      phone: createUserInput.phone,
       managerByEmployees: [],
     };
 
@@ -53,7 +55,7 @@ export class UsersService {
       managerEmployeeId: v4(),
       createdAt: new Date(),
       employeeIdFk: employee.userId,
-      managerIdFk: createUserEmployeeInput.managerUserId,
+      managerIdFk: managerUserId,
     };
 
     await this.userRepository.manager.transaction(async () => {
@@ -80,7 +82,7 @@ export class UsersService {
         managerIdFk: managerUserId,
       },
     });
-    if (!result || !result.length) throw Error('Leads not found');
+    if (!result || !result.length) throw Error('Manager Does Not exists');
     const arrayIds = [];
     result.forEach((ele) => {
       arrayIds.push(ele.employeeIdFk);
@@ -116,6 +118,7 @@ export class UsersService {
   }
 
   remove(userId: string) {
-    return this.userRepository.delete(userId);
+    this.userRepository.delete(userId);
+    return true;
   }
 }

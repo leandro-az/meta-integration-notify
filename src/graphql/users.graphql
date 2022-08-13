@@ -20,8 +20,3 @@ input UpdateUserInput {
   phone: String
   name: String
 }
-
-input CreateUserEmployeeInput {
-  managerUserId: String!
-  employeeUserInput: CreateUserInput!
-}

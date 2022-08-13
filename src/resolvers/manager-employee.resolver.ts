@@ -1,7 +1,5 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { ManagerEmployeeService } from '../services/manager-employee.service';
-import { CreateUserEmployeeInput } from '../dto/create-user-employee.input';
-import { UpdateManagerEmployeeInput } from '../dto/update-user-employee.input';
 
 @Resolver('ManagerEmployee')
 export class ManagerEmployeeResolver {

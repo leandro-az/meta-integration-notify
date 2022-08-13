@@ -55,5 +55,5 @@ export class Lead {
     eager: false,
   })
   @JoinColumn([{ name: 'user_id_fk', referencedColumnName: 'userId' }])
-  userIdFk2: User;
+  userIdFk2?: User;
 }

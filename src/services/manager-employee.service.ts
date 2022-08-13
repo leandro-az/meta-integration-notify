@@ -1,6 +1,4 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { CreateUserEmployeeInput } from '../dto/create-user-employee.input';
-import { UpdateManagerEmployeeInput } from '../dto/update-user-employee.input';
 import { Repository } from 'typeorm';
 import { ManagerEmployee } from '../entities/manager-employee.entity';
 
@@ -38,10 +36,6 @@ export class ManagerEmployeeService {
 
   findOne(id: number) {
     return `This action returns a #${id} managerEmployee`;
-  }
-
-  update(id: number, updateManagerEmployeeInput: UpdateManagerEmployeeInput) {
-    return `This action updates a #${id} managerEmployee`;
   }
 
   remove(id: number) {

@@ -109,8 +109,9 @@ export class UsersService {
   findOne(userId: string) {
     return this.userRepository.findOne({ where: { userId } });
   }
-  findByEmail(email: string) {
-    return this.userRepository.find({ where: { email } });
+  async findByEmail(email: string) {
+    const result = await this.userRepository.findOne({ where: { email } });
+    return result;
   }
 
   update(userId: string, updateUserInput: UpdateUserInput) {

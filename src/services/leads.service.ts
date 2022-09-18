@@ -72,14 +72,14 @@ export class LeadsService {
     });
   }
 
-  async update(status: string, updateLeadInput: UpdateLeadInput) {
+  async update(updateLeadInput: UpdateLeadInput) {
     const leadToUpdate: Lead = await this.findOne(updateLeadInput.leadId);
     leadToUpdate.age = updateLeadInput.age;
     leadToUpdate.email = updateLeadInput.email;
     leadToUpdate.name = updateLeadInput.name;
     leadToUpdate.obs = updateLeadInput.obs;
     leadToUpdate.phone = updateLeadInput.phone;
-    leadToUpdate.status = LeadStatus[status];
+    leadToUpdate.status = LeadStatus[updateLeadInput.status];
     leadToUpdate.valor_total_plano = updateLeadInput.valor_total_plano;
     leadToUpdate.updatedAt = new Date();
     return this.leadRepository.save(leadToUpdate);

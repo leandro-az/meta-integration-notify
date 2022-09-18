@@ -27,11 +27,8 @@ export class LeadsResolver {
   }
 
   @Mutation('updateLead')
-  update(
-    @Args('updateLeadInput') updateLeadInput: UpdateLeadInput,
-    @Args('status') status: string,
-  ) {
-    return this.leadsService.update(status, updateLeadInput);
+  update(@Args('updateLeadInput') updateLeadInput: UpdateLeadInput) {
+    return this.leadsService.update(updateLeadInput);
   }
 
   @Mutation('removeLead')

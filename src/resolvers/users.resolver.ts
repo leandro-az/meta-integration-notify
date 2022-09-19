@@ -42,8 +42,12 @@ export class UsersResolver {
     return this.usersService.update(updateUserInput.userId, updateUserInput);
   }
 
-  @Mutation('removeUser')
-  remove(@Args('userId') userId: string) {
+  @Mutation('removeUserManager')
+  removeUserManager(@Args('userId') userId: string) {
+    return this.usersService.remove(userId);
+  }
+  @Mutation('removeUserEmployee')
+  removeUserEmployee(@Args('userId') userId: string) {
     return this.usersService.remove(userId);
   }
 }

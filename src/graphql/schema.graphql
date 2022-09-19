@@ -14,7 +14,8 @@ type Mutation {
     createUserInput: CreateUserInput!
   ): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(userId: String!): Boolean!
+  removeUserManager(userId: String!): Boolean!
+  removeUserEmployee(userId: String!): Boolean!
   createLead(userRelated: String!, createLeadInput: CreateLeadInput!): Lead!
   updateLead(updateLeadInput: UpdateLeadInput!): Lead!
   removeLead(leadId: String!): Boolean!

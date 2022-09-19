@@ -12,7 +12,7 @@ import { UsersIntegration } from './users-integration.entity';
 import { ManagerEmployee } from './manager-employee.entity';
 
 @Index('email', ['email'], { unique: true })
-@Index('role_id_fk', ['roleIdFk'], {})
+@Index('role_id_fk', ['roleId'], {})
 @Entity('users', { schema: 'min_db' })
 export class User {
   @Column('varchar', { primary: true, name: 'user_id', length: 38 })

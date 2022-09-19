@@ -1,8 +1,8 @@
 type Query {
   userByEmail(email: String!): User
   lead(leadId: String!): Lead
-  leadsByUser(userId: String!): [Lead]!
-  employeesByManager(managerUserId: String!): [User]!
+  leadsByUser(userId: String!): [Lead]
+  employeesByManager(managerUserId: String!): [User]
   managerByEmployee(employeeUserId: String!): User!
   usersIntegration(managerUserId: String!): UsersIntegration!
 }

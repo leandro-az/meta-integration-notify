@@ -37,8 +37,8 @@ export class User {
   @Column('varchar', { name: 'name', nullable: true, length: 255 })
   name: string | null;
 
-  @Column('tinyint', { name: 'role_id_fk', nullable: true })
-  roleIdFk: number | null;
+  @Column('tinyint', { name: 'role_id_fk', nullable: false })
+  roleId: number;
 
   @Column('datetime', { name: 'created_at' })
   createdAt: Date;
@@ -51,7 +51,7 @@ export class User {
     onUpdate: 'NO ACTION',
   })
   @JoinColumn([{ name: 'role_id_fk', referencedColumnName: 'roleId' }])
-  roleIdFk2?: Role;
+  role?: Role;
 
   @OneToMany(() => Lead, (leads) => leads.userIdFk2)
   leads?: Lead[];

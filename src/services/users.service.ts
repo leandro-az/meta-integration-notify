@@ -22,7 +22,7 @@ export class UsersService {
       email: createUserInput.email,
       name: createUserInput.name,
       phone: createUserInput.phone,
-      roleIdFk: Roles.MANAGER,
+      roleId: Roles.MANAGER,
       updatedAt: null,
     };
     return this.userRepository.save(userManager);
@@ -46,7 +46,7 @@ export class UsersService {
       email: createUserInput.email,
       createdAt: new Date(),
       updatedAt: null,
-      roleIdFk: Roles.EMPLOYEE,
+      roleId: Roles.EMPLOYEE,
       phone: createUserInput.phone,
       managerByEmployees: [],
     };

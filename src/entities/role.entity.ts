@@ -30,6 +30,6 @@ export class Role {
   @Column('datetime', { name: 'updated_at', nullable: true })
   updatedAt: Date | null;
 
-  @OneToMany(() => User, (users) => users.roleIdFk2, { eager: false })
+  @OneToMany(() => User, (users) => users.role, { eager: false })
   users: User[];
 }

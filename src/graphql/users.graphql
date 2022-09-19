@@ -3,8 +3,11 @@ type User {
   email: String!
   name: String!
   createdAt: String
+  phone: String
   updatedAt: String
-  role: Role!
+  roleId: Int!
+  role: Role
+
   userIntergration: UsersIntegration!
 }
 

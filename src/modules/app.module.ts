@@ -7,6 +7,7 @@ import { ManagerEmployeeModule } from './manager-employee.module';
 import { GqlModule } from './graphql.module';
 import { TerminusModule } from '@nestjs/terminus';
 import { HealthCheckController } from '../controller/healthCheck';
+import { AuthorizeModule } from './authorize.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { HealthCheckController } from '../controller/healthCheck';
     ManagerEmployeeModule,
     GqlModule,
     TerminusModule,
+    AuthorizeModule,
   ],
   controllers: [HealthCheckController],
   providers: [],

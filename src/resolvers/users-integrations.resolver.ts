@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UsersIntegrationsService } from '../services/users-integrations.service';
-import { CreateUsersIntegrationInput } from '../dto/create-users-integration.input';
-import { UpdateUsersIntegrationInput } from '../dto/update-users-integration.input';
+import { Authorize } from 'src/interceptor/authorize.interceptor';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver('UsersIntegration')
 export class UsersIntegrationsResolver {
@@ -9,6 +9,7 @@ export class UsersIntegrationsResolver {
     private readonly usersIntegrationsService: UsersIntegrationsService,
   ) {}
 
+  @UseGuards(Authorize)
   @Mutation('createUserIntegration')
   create(
     @Args('managerUserId')
@@ -16,7 +17,7 @@ export class UsersIntegrationsResolver {
   ) {
     return this.usersIntegrationsService.create(managerUserId);
   }
-
+  @UseGuards(Authorize)
   @Query('usersIntegration')
   findOne(
     @Args('managerUserId')

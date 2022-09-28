@@ -85,8 +85,8 @@ export class LeadsService {
     return this.leadRepository.save(leadToUpdate);
   }
 
-  remove(leadId: string) {
-    this.leadRepository.delete(leadId);
-    return true;
+  async remove(leadId: string): Promise<boolean> {
+    const result = await this.leadRepository.delete(leadId);
+    return result.affected ? true : false;
   }
 }

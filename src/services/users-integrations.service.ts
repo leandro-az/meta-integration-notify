@@ -19,7 +19,7 @@ export class UsersIntegrationsService {
     const idTable = v4();
     const usersIntegrationToInsert: UsersIntegration = {
       createdAt: new Date(),
-      integrationUrl: `${process.env.MYSQL_HOST}/${uuidV4}`,
+      integrationUrl: `${process.env.APP_URL}/${uuidV4}`,
       integrationToken: uuidV4,
       updatedAt: null,
       userIdFk: managerUserId,

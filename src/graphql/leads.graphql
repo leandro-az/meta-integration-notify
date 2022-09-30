@@ -19,8 +19,8 @@ enum StatusEnum {
 }
 
 input CreateLeadInput {
-  email: String
-  phone: String
+  email: String!
+  phone: String!
   name: String!
   age: Int
   valor_total_plano: Float

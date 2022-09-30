@@ -26,6 +26,7 @@ export class LeadsResolver {
   @UseGuards(Authorize)
   @Query('leadsByUser')
   findLeadsByUser(@Args('userId') userId: string) {
+    if (!userId) throw new Error('User not provider');
     return this.leadsService.findLeadsByUser(userId);
   }
   @UseGuards(Authorize)

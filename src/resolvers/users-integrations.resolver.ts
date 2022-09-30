@@ -9,7 +9,6 @@ export class UsersIntegrationsResolver {
     private readonly usersIntegrationsService: UsersIntegrationsService,
   ) {}
 
-  @UseGuards(Authorize)
   @Mutation('createUserIntegration')
   create(
     @Args('managerUserId')

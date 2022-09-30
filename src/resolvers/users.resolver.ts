@@ -11,12 +11,22 @@ export class UsersResolver {
 
   @Mutation('createUserManager')
   create(@Args('createUserInput') createUserInput: CreateUserInput) {
+    if (!createUserInput.email) {
+      throw new Error('Email is required');
+    }
+    if (!createUserInput.phone) {
+      throw new Error('Phone is required');
+    }
+    if (!createUserInput.name) {
+      throw new Error('Name is required');
+    }
     return this.usersService.createUserManager(createUserInput);
   }
 
   @UseGuards(Authorize)
   @Query('userByEmail')
   findOne(@Args('email') email: string) {
+    if (!email) throw new Error('email not recive!');
     return this.usersService.findByEmail(email);
   }
   @UseGuards(Authorize)

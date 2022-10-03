@@ -24,6 +24,7 @@ export class UsersService {
       phone: createUserInput.phone,
       roleId: Roles.MANAGER,
       updatedAt: null,
+      icon: `svg-${Math.floor(Math.random() * 15) + 1}`,
     };
     return this.userRepository.save(userManager);
   }
@@ -49,6 +50,7 @@ export class UsersService {
       roleId: Roles.EMPLOYEE,
       phone: createUserInput.phone,
       managerByEmployees: [],
+      icon: `svg-${Math.floor(Math.random() * 15) + 1}`,
     };
 
     const managerEmployee: ManagerEmployee = {
@@ -115,12 +117,23 @@ export class UsersService {
     return result;
   }
 
-  update(userId: string, updateUserInput: UpdateUserInput) {
-    this.userRepository.update(userId, updateUserInput);
+  async update(
+    userId: string,
+    updateUserInput: UpdateUserInput,
+  ): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { userId } });
+    if (!user) {
+      throw new Error('User not found!');
+    }
+    const result = await this.userRepository.update(userId, updateUserInput);
+    if (!result.affected) {
+      throw new Error('User not updated!');
+    }
+    return user;
   }
 
-  remove(userId: string) {
-    this.userRepository.delete(userId);
-    return true;
+  async remove(userId: string): Promise<boolean> {
+    const result = await this.userRepository.delete(userId);
+    return result.affected ? true : false;
   }
 }

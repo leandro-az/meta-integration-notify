@@ -28,6 +28,7 @@ export class LeadsService {
       valor_total_plano: 0,
       userIdFk: userRelated,
       updatedAt: null,
+      icon: `svg-${Math.floor(Math.random() * 15) + 1}`,
     };
     return this.leadRepository.save(leadToSave);
   }
@@ -52,6 +53,7 @@ export class LeadsService {
       valor_total_plano: 0,
       userIdFk: userIntegrationIdFound.userIdFk,
       updatedAt: null,
+      icon: `svg-${Math.floor(Math.random() * 15) + 1}`,
     };
     return this.leadRepository.save(leadToSave);
   }

@@ -9,6 +9,7 @@ type Lead {
   obs: String
   createdAt: String
   updatedAt: String
+  icon: String
 }
 
 enum StatusEnum {

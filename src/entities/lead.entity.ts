@@ -1,4 +1,11 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
 import { User } from './user.entity';
 
 @Index('email', ['email'], { unique: true })
@@ -56,4 +63,7 @@ export class Lead {
   })
   @JoinColumn([{ name: 'user_id_fk', referencedColumnName: 'userId' }])
   userIdFk2?: User;
+
+  @Column('varchar', { name: 'icon', nullable: false, length: 30 })
+  icon!: string;
 }

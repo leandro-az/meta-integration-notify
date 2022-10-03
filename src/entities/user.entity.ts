@@ -1,4 +1,5 @@
 import {
+  BeforeInsert,
   Column,
   Entity,
   Index,
@@ -75,4 +76,7 @@ export class User {
     { eager: false },
   )
   managerByEmployees?: ManagerEmployee[];
+
+  @Column('varchar', { name: 'icon', nullable: false, length: 30 })
+  icon!: string;
 }

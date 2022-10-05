@@ -10,6 +10,7 @@ type Lead {
   createdAt: String
   updatedAt: String
   icon: String
+  userIdFk2: User
 }
 
 enum StatusEnum {

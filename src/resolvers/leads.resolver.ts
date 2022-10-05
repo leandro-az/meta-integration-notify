@@ -31,8 +31,11 @@ export class LeadsResolver {
   }
   @UseGuards(Authorize)
   @Mutation('updateLead')
-  update(@Args('updateLeadInput') updateLeadInput: UpdateLeadInput) {
-    return this.leadsService.update(updateLeadInput);
+  update(
+    @Args('updateLeadInput') updateLeadInput: UpdateLeadInput,
+    @Args('userRelated') userRelated: string,
+  ) {
+    return this.leadsService.update(updateLeadInput, userRelated);
   }
   @UseGuards(Authorize)
   @Mutation('removeLead')

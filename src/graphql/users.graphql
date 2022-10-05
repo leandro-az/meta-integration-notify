@@ -9,6 +9,7 @@ type User {
   role: Role
   icon: String
   userIntergration: UsersIntegration!
+  leads: [Lead!]
 }
 
 input CreateUserInput {

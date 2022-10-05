@@ -6,6 +6,7 @@ import { Lead } from '../entities/lead.entity';
 import { v4 } from 'uuid';
 import { LeadStatus } from '../constants/lead-status.constant';
 import { UsersIntegration } from '../entities/users-integration.entity';
+import { newLeadNotify } from '../utils/nodemailer';
 @Injectable()
 export class LeadsService {
   constructor(
@@ -36,7 +37,8 @@ export class LeadsService {
   async recive(createLeadInput: CreateLeadInput, userIntegrationId: string) {
     const userIntegrationIdFound = await this.userIntegrationRepository.findOne(
       {
-        where: { userIntegrationId },
+        where: { integrationToken: userIntegrationId },
+        relations: ['userIdFk2'],
       },
     );
     // Talvez tenha que bater no Facebook Para recuperar os dados do Form
@@ -55,7 +57,14 @@ export class LeadsService {
       updatedAt: null,
       icon: `svg-${Math.floor(Math.random() * 15) + 1}`,
     };
-    return this.leadRepository.save(leadToSave);
+    const result = await this.leadRepository.save(leadToSave);
+    await newLeadNotify(
+      leadToSave.email,
+      leadToSave.name,
+      leadToSave.phone,
+      userIntegrationIdFound.userIdFk2?.email,
+    );
+    return result;
   }
 
   findAll() {
@@ -71,19 +80,32 @@ export class LeadsService {
       where: {
         userIdFk: userId,
       },
+      relations: ['userIdFk2'],
     });
+    // return { ...result, user: result[0].userIdFk2 };
   }
 
-  async update(updateLeadInput: UpdateLeadInput) {
+  async update(updateLeadInput: UpdateLeadInput, userRelated: string) {
     const leadToUpdate: Lead = await this.findOne(updateLeadInput.leadId);
-    leadToUpdate.age = updateLeadInput.age;
-    leadToUpdate.email = updateLeadInput.email;
-    leadToUpdate.name = updateLeadInput.name;
-    leadToUpdate.obs = updateLeadInput.obs;
-    leadToUpdate.phone = updateLeadInput.phone;
+    leadToUpdate.age = updateLeadInput.age
+      ? updateLeadInput.age
+      : leadToUpdate.age;
+    leadToUpdate.email = updateLeadInput.email
+      ? updateLeadInput.email
+      : leadToUpdate.email;
+    leadToUpdate.name = updateLeadInput.name
+      ? updateLeadInput.name
+      : leadToUpdate.name;
+    leadToUpdate.obs = updateLeadInput.obs
+      ? updateLeadInput.obs
+      : leadToUpdate.obs;
+    leadToUpdate.phone = updateLeadInput.phone
+      ? updateLeadInput.phone
+      : leadToUpdate.phone;
     leadToUpdate.status = LeadStatus[updateLeadInput.status];
     leadToUpdate.valor_total_plano = updateLeadInput.valor_total_plano;
     leadToUpdate.updatedAt = new Date();
+    leadToUpdate.userIdFk = userRelated;
     return this.leadRepository.save(leadToUpdate);
   }
 

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ManagerEmployeeResolver } from '../src/resolvers/manager-employee.resolver';
-import { ManagerEmployeeService } from '../src/services/manager-employee.service';
+import { ManagerEmployeeResolver } from '../../src/resolvers/manager-employee.resolver';
+import { ManagerEmployeeService } from '../../src/services/manager-employee.service';
 
 describe('ManagerEmployeeResolver', () => {
   let resolver: ManagerEmployeeResolver;

@@ -1,6 +1,16 @@
-## Description
+# Meta Integration Notify - Back
 
-Repository Dedicated To TCC IN Architecture in Distributed Software - PUC
+This back-end project that was generated to The Final Project of postgraduate on Distributed Software Architecture in PUC 
+
+## Technologies used.
+
+[Typescript](https://www.typescriptlang.org/)
+[NEST.js](https://nestjs.com/)
+[Graphql](https://graphql.org/)
+[AWS - Cloudfront](https://aws.amazon.com/pt/cloudfront/)
+[Elastic Beanstalk](https://aws.amazon.com/pt/elasticbeanstalk/)
+[Github Actions](https://github.com/features/actions)
+
 
 ## Installation
 
@@ -60,6 +70,3 @@ typeorm-model-generator -h <host> -d <database> -p [port] -u <user> -x [password
 
 👤 **Leandro Almeida**
 
-## License
-
-Nest is [MIT licensed](LICENSE).

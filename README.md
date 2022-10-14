@@ -5,10 +5,15 @@ This back-end project that was generated to The Final Project of postgraduate on
 ## Technologies used.
 
 [Typescript](https://www.typescriptlang.org/)
+
 [NEST.js](https://nestjs.com/)
+
 [Graphql](https://graphql.org/)
+
 [AWS - Cloudfront](https://aws.amazon.com/pt/cloudfront/)
+
 [Elastic Beanstalk](https://aws.amazon.com/pt/elasticbeanstalk/)
+
 [Github Actions](https://github.com/features/actions)
 
 

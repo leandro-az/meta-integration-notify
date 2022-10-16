@@ -49,6 +49,44 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Test Querys and Mutations: 
+
+Run the project and go to: http://localhost:3000/graphql to access grahql plyaground.
+
+
+
+<p align="center">
+  <img src="/src/templates/graphql_playground.png" width="800" title="Login Scream">
+</p>
+
+
+## Test Lead Notification:
+
+Do Http Post requisition to integration url like:
+
+```
+POST on https://d1jjp4ddzxq0gc.cloudfront.net/leads/recive/{IntegrationID}
+``` 
+With body:
+
+```
+{
+    "email": "lead@puc.com",
+    "phone": "99999999",
+    "name": "Lead Puc",
+    "age": 24,
+    "valor_total_plano": 20000,
+    "obs": "Novo Lead No Portal"
+}
+```
+
+You will recive in our email the lead information like:
+
+
+<p align="center">
+  <img src="/src/templates/notification.png" width="500" title="Login Scream">
+</p>
+
 ## 🚀 CREATE SECURITY GROUP
 
 ####
